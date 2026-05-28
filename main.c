@@ -7,7 +7,7 @@
 
 int main() {
   char buf_in[BUF_SIZE];
-  char buf_out[BUF_SIZE];
+  char buf_out[2*BUF_SIZE];
 
   uart_init();
   _delay_ms(100); // Initialization can take a bit of time

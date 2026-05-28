@@ -1,13 +1,13 @@
-baud=57600
+# Programmer parameters
 avrType=atmega328p
-avrFreq=16000000 # 16 Mhz
-programmerDev=/dev/ttyUSB0
 programmerType=arduino
+programmerDev=/dev/ttyUSB0
 
+# Compiler parameters
+avrFreq=16000000 # 16 Mhz
 cflags=-DF_CPU=$(avrFreq) -mmcu=$(avrType) -Wall -Werror -Wextra -Os
 
 objects=$(patsubst %.c,%.o,$(wildcard *.c))
-
 
 .PHONY: clean flash
 
@@ -25,7 +25,11 @@ main.hex: main.elf
 	avr-objcopy -j .text -j .data -O ihex $^ $@
 
 flash: main.hex
-	avrdude -p$(avrType) -c$(programmerType) -P$(programmerDev) -b$(baud) -v -U flash:w:$<
+	avrdude -v \
+		-p $(avrType) \
+		-c $(programmerType) \
+		-P $(programmerDev) \
+		-U flash:w:$<
 
 clean:
 	rm -f main.hex main.elf $(objects)

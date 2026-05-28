@@ -5,7 +5,9 @@ and an Arduino board over USB at 1Mbits / second.
 
 Prerequisite:
 * The [Atmel tool chain][1]
-* the `pyserial` package
+* the avr-libc Debian package
+* the avrdude Debian package
+* the `pyserial` package to run test.py
 
 To build and upload the firmware to the Arduino:
 
