@@ -1,6 +1,8 @@
-# Programmer parameters
+# Overall parameters
 avrType=atmega328p
-programmerType=arduino
+
+# Programmer parameters
+programmerId=arduino
 programmerDev=/dev/ttyUSB0
 
 # Compiler parameters
@@ -27,7 +29,7 @@ main.hex: main.elf
 flash: main.hex
 	avrdude -v \
 		-p $(avrType) \
-		-c $(programmerType) \
+		-c $(programmerId) \
 		-P $(programmerDev) \
 		-U flash:w:$<
 
